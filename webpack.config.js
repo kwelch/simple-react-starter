@@ -5,7 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   target: 'web',
   devtool: 'cheap-eval-source-map',
-  entry: './src/index.js',
+  entry: {
+    main: ['babel-polyfill', 'react-hot-loader/patch', './src/index.js'],
+  },
   output: {
     filename: '[name].[hash].js',
     path: path.resolve('./dist'),
@@ -23,6 +25,10 @@ module.exports = {
         test: /\.js$/,
         exclude: ['node_modules'],
         loader: 'babel-loader',
+      },
+      {
+        test: /\.css$/,
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
     ],
   },
