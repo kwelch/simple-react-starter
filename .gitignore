@@ -1,5 +1,16 @@
-#dependency directories
-##node
-node_modules/
-##nuget
-packages/
+language: node_js
+node_js:
+  - "6"
+cache:
+  yarn: true
+script:
+  - yarn run test
+  - yarn run build
+deploy:
+  provider: pages
+  local_dir: dist
+  target_branch: gh-pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+  on:
+    branch: master
