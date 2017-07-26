@@ -77,13 +77,11 @@ module.exports = () => ({
   devServer: {
     host: 'localhost',
     port: 3000,
-
     // respond to 404s with index.html
     historyApiFallback: true,
-
     // enable HMR on the server
     hot: true,
-
     open: true,
+    openPage: '',
   },
 });
