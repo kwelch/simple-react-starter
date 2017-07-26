@@ -1,6 +1,6 @@
 # Simple React Starter
 
-[![Build Status](https://travis-ci.org/kwelch/simple-react-start.svg?branch=master)](https://travis-ci.org/kwelch/simple-react-start)
+[![Build Status](https://travis-ci.org/kwelch/simple-react-starter.svg?branch=master)](https://travis-ci.org/kwelch/simple-react-starter)
 
 I built this mostly as a test to myself of being able to setup webpack, babel, dev-server, and react from scratch.
 
