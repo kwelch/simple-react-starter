@@ -1,5 +1,4 @@
 import React from 'react';
-import './base.css'; // eslint-disable-line import/no-unassigned-import
 
 const App = () => {
   return (

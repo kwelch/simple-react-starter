@@ -36,18 +36,7 @@ module.exports = () => ({
         use: [{ loader: 'babel-loader' }],
       },
       {
-        test: /\.css$/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
-      },
-      {
         test: /\.(jpe?g|png)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-        },
-      },
-      {
-        test: /.(mp3)$/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',

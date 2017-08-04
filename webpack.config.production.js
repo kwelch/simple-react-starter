@@ -1,12 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { dependencies } = require('./package.json');
 
 module.exports = () => ({
   target: 'web',
   devtool: 'cheap-eval-source-map',
   entry: {
     main: ['babel-polyfill', './src/index.js'],
+    vendor: Object.keys(dependencies),
   },
   output: {
     filename: '[name].[hash].js',
@@ -20,18 +22,7 @@ module.exports = () => ({
         loader: 'babel-loader',
       },
       {
-        test: /\.css$/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
-      },
-      {
         test: /\.(jpe?g|png)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-        },
-      },
-      {
-        test: /.(mp3)$/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',
@@ -44,6 +35,7 @@ module.exports = () => ({
       minimize: true,
       debug: false,
     }),
+    // related issue: https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/31
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       beautify: false,
@@ -57,6 +49,10 @@ module.exports = () => ({
       comments: false,
     }),
     // build optimization plugins
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity,
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common',
       filename: 'common.[hash].js',
