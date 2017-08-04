@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = () => ({
   target: 'web',
@@ -44,18 +45,20 @@ module.exports = () => ({
       minimize: true,
       debug: false,
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      beautify: false,
-      mangle: {
-        screw_ie8: true,
-        keep_fnames: true,
-      },
-      compress: {
-        screw_ie8: true,
-      },
-      comments: false,
-    }),
+    new UglifyJSPlugin(
+      {
+        // sourceMap: true,
+        // beautify: false,
+        // mangle: {
+        //   screw_ie8: true,
+        //   keep_fnames: true,
+        // },
+        // compress: {
+        //   screw_ie8: true,
+        // },
+        // comments: false,
+      }
+    ),
     // build optimization plugins
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common',
